@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  
+  <div class="row">
+
+    <div class="col-xs-12  col-sm-12  col-md-12  col-lg-12  col-xl-12  ">
+      <h2>Contas</h2>  
+
+      <div>
+        <a routerLink="/conta/save" class="btn btn-success">Novo</a>
+      </div>
+                  
+      <div [ngClass]="mensagem.classesCss" role="alert"  *ngIf="mensagem.visible">
+        <span [ngSwitch]="mensagem.tipo">          
+          <strong *ngSwitchCase="'success'">Sucesso</strong>
+          <strong *ngSwitchCase="'warning'">Alerta</strong>                              
+          <strong *ngSwitchCase="'danger'">Erro</strong>                    
+          <strong *ngSwitchDefault>Informação</strong>                                                  
+        </span>
+        {{mensagem.texto}}
+      </div>
+
+      <table class="table table-striped table-over ">
+        <thead class="thead-default">
+          <tr>
+            <th>Descrição</th>
+            <th>Usuário</th>            
+            <th>Saldo</th>
+            <th>Deletar</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="contas.length == 0">
+              <td colspan="4" align="center">Nenhum registro encontrado.</td>
+            </tr>
+            <tr *ngFor="let c of contas" [routerLink]="['/conta/save', c.id]">
+              <td> {{ c.descricao }} </td>              
+              <td> {{ c.usuario }} </td>              
+              <td> {{ c.saldo }} </td>              
+              <td> <button type="button" (click)="onDelete(c); $event.stopPropagation()" class="btn btn-danger ">Deletar</button> </td>
+            </tr>            
+          </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

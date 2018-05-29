@@ -1,0 +1,46 @@
+
+<div class="container">
+
+    <h2>Salvar Contato</h2>  
+
+    <form (ngSubmit)="onSubmit()" #contatoForm="ngForm">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" 
+          [ngClass]="getInputClass(nome.valid, nome.pristine)"
+          placeholder="Digite o nome"
+          name="nome" #nome="ngModel"
+           [(ngModel)]="contato.nome"
+           required>          
+
+          <div class="invalid-feedback" [hidden]="nome.valid || nome.pristine">O campo nome é obrigatório</div>
+        </div>        
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" class="form-control" placeholder="Digite o e-mail"
+          name="email" #email="ngModel" 
+          [ngClass]="getInputClass(email.valid, email.pristine)"
+          [(ngModel)]="contato.email" 
+          required>
+
+          <div class="invalid-feedback" [hidden]="email.valid || email.pristine">O campo e-mail é obrigatório</div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="text" class="form-control" placeholder="Digite o telefone"
+          name="telefone" #telefone="ngModel"
+          [ngClass]="getInputClass(telefone.valid, telefone.pristine)"
+          [(ngModel)]="contato.telefone" required>
+          <div class="invalid-feedback" [hidden]="telefone.valid || telefone.pristine">O campo telefone é obrigatório</div>
+        </div>
+        
+        <button type="submit" class="btn btn-success" [disabled]="!contatoForm.form.valid">Salvar</button>
+        ||
+        <!-- <a class="btn btn-secondary" >Voltar</a> -->
+        <button type="button" (click)="goBack()" class="btn btn-secondary">Voltar</button>
+    </form>
+
+</div>
+
